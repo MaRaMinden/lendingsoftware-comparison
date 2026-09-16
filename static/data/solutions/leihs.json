@@ -1,0 +1,37 @@
+{
+  "id": "leihs",
+  "name": "Leihs",
+  "tagline": {
+    "de": "Bewährte Open-Source-Lösung für Inventar und Leihe",
+    "en": "Established open source solution for inventory and lending"
+  },
+  "description": {
+    "de": "Leihs ist ein ausgereiftes Open-Source-System zur Verwaltung von Leihbeständen. Es wurde ursprünglich für Hochschulen und Bibliotheken entwickelt, eignet sich aber auch für Initiativen mit größerem, strukturiertem Bestand. Die Software läuft auf eigenem Server und erfordert technisches Know-how beim Setup.",
+    "en": "Leihs is a mature open source system for managing lending inventories. Originally developed for universities and libraries, it also suits initiatives with larger, structured inventories. The software runs on your own server and requires technical expertise to set up."
+  },
+  "website": "https://leihs.github.io/leihs/",
+  "license": "GPL-3.0",
+  "logo": null,
+  "last_updated": "2024-06-01",
+  "maintainer": null,
+  "properties": {
+    "open_source": true,
+    "hosting": ["self_hosted"]
+  },
+  "features": [
+    { "de": "Umfangreiche Inventarverwaltung", "en": "Comprehensive inventory management" },
+    { "de": "Nutzerverwaltung mit Rollen", "en": "User management with roles" },
+    { "de": "Buchungs- und Rückgabesystem", "en": "Booking and return system" },
+    { "de": "REST API", "en": "REST API" },
+    { "de": "Mehrsprachig (DE, EN, u. a.)", "en": "Multilingual (DE, EN, and others)" },
+    { "de": "Aktiv gepflegte Community", "en": "Actively maintained community" }
+  ],
+  "criteria_scores": {
+    "cost":            { "free": 3, "low": 3, "medium": 2, "any": 1 },
+    "technical_skill": { "none": 0, "basic": 1, "advanced": 3 },
+    "community_size":  { "small": 1, "medium": 3, "large": 3 },
+    "item_types":      { "library": 3, "tools": 2, "everyday": 1, "mixed": 2 },
+    "payment":         { "not_needed": 3, "optional": 1, "required": 0 },
+    "multilingual":    { "not_needed": 2, "required": 3 }
+  }
+}

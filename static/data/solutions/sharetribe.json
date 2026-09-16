@@ -1,0 +1,37 @@
+{
+  "id": "sharetribe",
+  "name": "Sharetribe",
+  "tagline": {
+    "de": "Kommerzielle Marketplace-Plattform für Peer-to-Peer-Sharing",
+    "en": "Commercial marketplace platform for peer-to-peer sharing"
+  },
+  "description": {
+    "de": "Sharetribe ist eine kommerzielle SaaS-Plattform zum Aufbau von Peer-to-Peer-Marktplätzen, auch für Leihe. Sie bietet viel Flexibilität und eine gute mobile Nutzererfahrung, erfordert aber ein laufendes Budget. Der Einstieg ist auch ohne Programmierkenntnisse möglich.",
+    "en": "Sharetribe is a commercial SaaS platform for building peer-to-peer marketplaces, including lending. It offers great flexibility and a good mobile experience, but requires an ongoing budget. Getting started is possible without programming skills."
+  },
+  "website": "https://www.sharetribe.com",
+  "license": null,
+  "logo": null,
+  "last_updated": "2024-06-01",
+  "maintainer": null,
+  "properties": {
+    "open_source": false,
+    "hosting": ["cloud"]
+  },
+  "features": [
+    { "de": "Kein technisches Setup nötig", "en": "No technical setup required" },
+    { "de": "Integrierte Zahlungsabwicklung (Stripe)", "en": "Integrated payment processing (Stripe)" },
+    { "de": "Mobile-optimierte Oberfläche", "en": "Mobile-optimized interface" },
+    { "de": "Anpassbares Design", "en": "Customizable design" },
+    { "de": "Mehrsprachigkeit möglich", "en": "Multilingual support possible" },
+    { "de": "Nutzerverwaltung inklusive", "en": "User management included" }
+  ],
+  "criteria_scores": {
+    "cost":            { "free": 0, "low": 1, "medium": 3, "any": 3 },
+    "technical_skill": { "none": 3, "basic": 3, "advanced": 2 },
+    "community_size":  { "small": 2, "medium": 3, "large": 3 },
+    "item_types":      { "library": 1, "tools": 2, "everyday": 3, "mixed": 3 },
+    "payment":         { "not_needed": 2, "optional": 3, "required": 3 },
+    "multilingual":    { "not_needed": 2, "required": 3 }
+  }
+}

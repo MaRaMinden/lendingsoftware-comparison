@@ -1,0 +1,36 @@
+{
+  "id": "booqable",
+  "name": "Booqable",
+  "tagline": {
+    "de": "Professionelle Miet- und Verleihsoftware für kleine Unternehmen",
+    "en": "Professional rental software for small businesses"
+  },
+  "description": {
+    "de": "Booqable ist eine kommerzielle Miet-Software aus den Niederlanden, die sich primär an kleine Verleihbetriebe und Shops richtet. Sie bietet eine saubere Buchungsoberfläche, Bestandsmanagement und integrierte Zahlungsabwicklung. Für gemeinschaftliche Initiativen ohne Einnahmen ist das Modell möglicherweise zu teuer.",
+    "en": "Booqable is a commercial rental software from the Netherlands, primarily targeting small rental businesses and shops. It offers a clean booking interface, inventory management, and integrated payment processing. For community initiatives without revenue, the pricing model may be too costly."
+  },
+  "website": "https://booqable.com",
+  "license": null,
+  "logo": null,
+  "last_updated": "2024-06-01",
+  "maintainer": null,
+  "properties": {
+    "open_source": false,
+    "hosting": ["cloud"]
+  },
+  "features": [
+    { "de": "Bestandsverwaltung und Buchungssystem", "en": "Inventory management and booking system" },
+    { "de": "Online-Buchungswidget (einbettbar)", "en": "Online booking widget (embeddable)" },
+    { "de": "Integrierte Zahlungsabwicklung", "en": "Integrated payment processing" },
+    { "de": "Mobile App für Betreiber:innen", "en": "Mobile app for operators" },
+    { "de": "Barcode-Scanning", "en": "Barcode scanning" }
+  ],
+  "criteria_scores": {
+    "cost":            { "free": 0, "low": 2, "medium": 3, "any": 3 },
+    "technical_skill": { "none": 3, "basic": 3, "advanced": 2 },
+    "community_size":  { "small": 3, "medium": 2, "large": 1 },
+    "item_types":      { "library": 1, "tools": 3, "everyday": 2, "mixed": 3 },
+    "payment":         { "not_needed": 1, "optional": 3, "required": 3 },
+    "multilingual":    { "not_needed": 3, "required": 1 }
+  }
+}

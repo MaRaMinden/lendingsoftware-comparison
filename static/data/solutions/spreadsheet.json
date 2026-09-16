@@ -1,0 +1,35 @@
+{
+  "id": "spreadsheet",
+  "name": "Tabelle / Airtable",
+  "tagline": {
+    "de": "Einfacher Einstieg für kleine Initiativen ohne Budget",
+    "en": "Simple entry point for small initiatives without budget"
+  },
+  "description": {
+    "de": "Für sehr kleine Initiativen in der Gründungsphase kann eine einfache Tabellenlösung (Google Sheets, Airtable, Notion) der pragmatischste Einstieg sein. Es gibt fertige Vorlagen für Verleihverwaltung. Der Nachteil: keine automatisierten Buchungen, keine Self-Service-Oberfläche für Leihende – alles muss manuell gepflegt werden.",
+    "en": "For very small initiatives in the founding phase, a simple spreadsheet solution (Google Sheets, Airtable, Notion) can be the most pragmatic starting point. Ready-made templates exist for lending management. The downside: no automated bookings, no self-service interface for borrowers – everything must be managed manually."
+  },
+  "website": "https://airtable.com",
+  "license": null,
+  "logo": null,
+  "last_updated": "2024-06-01",
+  "maintainer": null,
+  "properties": {
+    "open_source": false,
+    "hosting": ["cloud"]
+  },
+  "features": [
+    { "de": "Kein technisches Setup", "en": "No technical setup" },
+    { "de": "Sofort einsatzbereit", "en": "Ready to use immediately" },
+    { "de": "Kostenlos nutzbar (Basispläne)", "en": "Free to use (basic plans)" },
+    { "de": "Bekannte Oberfläche (kein Einarbeitung nötig)", "en": "Familiar interface (no onboarding needed)" }
+  ],
+  "criteria_scores": {
+    "cost":            { "free": 3, "low": 3, "medium": 1, "any": 1 },
+    "technical_skill": { "none": 3, "basic": 3, "advanced": 1 },
+    "community_size":  { "small": 3, "medium": 1, "large": 0 },
+    "item_types":      { "library": 2, "tools": 2, "everyday": 2, "mixed": 3 },
+    "payment":         { "not_needed": 3, "optional": 1, "required": 0 },
+    "multilingual":    { "not_needed": 3, "required": 1 }
+  }
+}

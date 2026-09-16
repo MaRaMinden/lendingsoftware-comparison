@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "home": "Home",
+    "quiz": "Questionnaire",
+    "results": "Results",
+    "allSolutions": "All solutions"
+  },
+  "home": {
+    "title": "Which lending software fits your initiative?",
+    "subtitle": "Answer a few questions and get a personalised recommendation – transparent and traceable.",
+    "cta": "Start questionnaire",
+    "ctaResume": "Continue questionnaire",
+    "howItWorks": "How it works",
+    "step1Title": "Answer questions",
+    "step1Desc": "Go through a short questionnaire about your requirements.",
+    "step2Title": "Set priorities",
+    "step2Desc": "Decide which criteria matter most to you.",
+    "step3Title": "Get a recommendation",
+    "step3Desc": "See which software fits you best – with full transparency about the scoring."
+  },
+  "quiz": {
+    "question": "Question",
+    "of": "of",
+    "skip": "Skip",
+    "next": "Next",
+    "back": "Back",
+    "finish": "Show results",
+    "importance": "How important is this to you?",
+    "importanceLow": "Less important",
+    "importanceMedium": "Important",
+    "importanceHigh": "Very important",
+    "exclusionNote": "Exclusion criterion – affects which solutions are considered",
+    "weightedNote": "Weighted criterion – affects the ranking of recommendations"
+  },
+  "results": {
+    "title": "Your recommendations",
+    "subtitle": "Based on your answers",
+    "excluded": "Hidden due to exclusion criteria",
+    "matchScore": "Match",
+    "learnMore": "Learn more",
+    "visitWebsite": "Visit website",
+    "editAnswers": "Edit answers",
+    "share": "Share result",
+    "shareCopied": "Link copied!",
+    "showDetails": "Scoring details",
+    "hideDetails": "Hide details",
+    "noResults": "No solutions found",
+    "noResultsHint": "The exclusion criteria filter out all solutions. Try adjusting your answers.",
+    "scoreExplanation": "How is the score calculated?",
+    "scoreExplanationText": "The score is a weighted average: each solution receives points (0–3) for each answer, multiplied by the importance you assigned. Exclusion criteria remove solutions entirely.",
+    "openSource": "Open Source",
+    "selfHosted": "Self-hosted",
+    "cloud": "Cloud",
+    "free": "Free",
+    "license": "License",
+    "maintainer": "Maintained by"
+  },
+  "solution": {
+    "features": "Features",
+    "criteriaBreakdown": "Scoring breakdown",
+    "criterionScore": "Points",
+    "criterionWeight": "Importance",
+    "weightedScore": "Weighted contribution",
+    "backToResults": "Back to results",
+    "visitWebsite": "Visit website",
+    "lastUpdated": "Last updated",
+    "scoreNote": "Scores are assigned by AllerLeih and can be updated via community PRs."
+  },
+  "footer": {
+    "poweredBy": "A project by",
+    "contribute": "Add or correct a solution",
+    "contributeLink": "https://github.com/allerleih/leih-finder"
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "loading": "Loading …",
+    "error": "Error loading",
+    "openSourceBadge": "Open Source",
+    "notOpenSource": "Proprietary"
+  }
+}

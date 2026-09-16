@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leih-Finder Admin</title>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f9fafb; color: #111; font-size: 14px; }
+    .wrap { max-width: 800px; margin: 0 auto; padding: 24px 16px; }
+    h1 { font-size: 20px; font-weight: 700; color: #2D6A4F; margin-bottom: 4px; }
+    .subtitle { color: #6b7280; font-size: 13px; margin-bottom: 24px; }
+    .card { background: white; border-radius: 12px; border: 1px solid #e5e7eb; padding: 20px; margin-bottom: 16px; }
+    h2 { font-size: 15px; font-weight: 600; margin-bottom: 12px; color: #374151; }
+    label { display: block; font-size: 12px; font-weight: 500; color: #6b7280; margin-bottom: 4px; margin-top: 12px; }
+    input, textarea, select {
+      width: 100%; padding: 8px 10px; border: 1.5px solid #d1d5db; border-radius: 8px;
+      font-size: 13px; font-family: inherit; transition: border-color .15s;
+    }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: #2D6A4F; }
+    textarea { min-height: 80px; resize: vertical; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: background .15s; }
+    .btn-primary { background: #2D6A4F; color: white; }
+    .btn-primary:hover { background: #1a4a36; }
+    .btn-secondary { background: white; color: #2D6A4F; border: 2px solid #2D6A4F; }
+    .btn-secondary:hover { background: #f0fdf4; }
+    .btn-danger { background: white; color: #dc2626; border: 2px solid #fca5a5; font-size: 12px; padding: 5px 10px; }
+    .btn-danger:hover { background: #fef2f2; }
+    .score-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; align-items: center; }
+    .score-grid input[type=range] { width: 100%; }
+    .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+    .badge-green { background: #dcfce7; color: #16a34a; }
+    .badge-gray  { background: #f3f4f6; color: #6b7280; }
+    .tab-bar { display: flex; gap: 4px; margin-bottom: 20px; }
+    .tab { padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent; }
+    .tab.active { background: #2D6A4F; color: white; }
+    .tab:not(.active) { background: white; color: #6b7280; border-color: #e5e7eb; }
+    .notice { background: #fefce8; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #92400e; margin-bottom: 16px; }
+    .feature-row { display: flex; gap: 8px; margin-bottom: 6px; }
+    .feature-row input { flex: 1; }
+    .hosting-check { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+    .hosting-check input[type=checkbox] { width: auto; }
+    pre { background: #111827; color: #f3f4f6; padding: 16px; border-radius: 10px; overflow: auto; font-size: 12px; line-height: 1.6; max-height: 400px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  </style>
+</head>
+<body>
+<div class="wrap" x-data="admin()">
+
+  <h1>⚙️ Leih-Finder Admin</h1>
+  <p class="subtitle">Lösungen bearbeiten und als JSON exportieren – dann als PR einreichen.</p>
+
+  <div class="notice">
+    ℹ️ Dieses Tool arbeitet nur lokal im Browser. Nichts wird automatisch gespeichert oder hochgeladen.
+    Exportiert die JSON-Datei und reicht sie als Pull Request im GitHub-Repository ein.
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab" :class="{active: tab==='edit'}" @click="tab='edit'">✏️ Lösung bearbeiten</button>
+    <button class="tab" :class="{active: tab==='preview'}" @click="tab='preview'">👁 JSON-Vorschau</button>
+    <button class="tab" :class="{active: tab==='criteria'}" @click="tab='criteria'">📋 Kriterien laden</button>
+  </div>
+
+  <!-- ===== EDIT TAB ===== -->
+  <div x-show="tab==='edit'">
+
+    <!-- Load existing -->
+    <div class="card">
+      <h2>Vorhandene JSON laden (optional)</h2>
+      <input type="file" accept=".json" @change="loadFile($event)" />
+      <p style="font-size:11px;color:#9ca3af;margin-top:6px;">Oder füllt das Formular für eine neue Lösung aus.</p>
+    </div>
+
+    <!-- Basic info -->
+    <div class="card">
+      <h2>Grundinfos</h2>
+      <div class="row">
+        <div>
+          <label>ID (Dateiname ohne .json) *</label>
+          <input x-model="s.id" placeholder="z.B. meine-loesung" />
+        </div>
+        <div>
+          <label>Name *</label>
+          <input x-model="s.name" placeholder="Anzeigename" />
+        </div>
+      </div>
+      <label>Tagline (Deutsch)</label>
+      <input x-model="s.tagline.de" placeholder="Kurzbeschreibung auf Deutsch" />
+      <label>Tagline (Englisch)</label>
+      <input x-model="s.tagline.en" placeholder="Short description in English" />
+      <label>Beschreibung (Deutsch)</label>
+      <textarea x-model="s.description.de"></textarea>
+      <label>Beschreibung (Englisch)</label>
+      <textarea x-model="s.description.en"></textarea>
+      <div class="row" style="margin-top:12px">
+        <div>
+          <label>Website URL</label>
+          <input x-model="s.website" placeholder="https://..." />
+        </div>
+        <div>
+          <label>Lizenz (z.B. GPL-3.0)</label>
+          <input x-model="s.license" placeholder="leer lassen wenn proprietär" />
+        </div>
+      </div>
+      <label>Zuletzt aktualisiert (YYYY-MM-DD)</label>
+      <input x-model="s.last_updated" placeholder="2024-06-01" />
+      <label>Gepflegt von (Name / GitHub-Handle)</label>
+      <input x-model="s.maintainer" placeholder="Optional" />
+    </div>
+
+    <!-- Properties -->
+    <div class="card">
+      <h2>Eigenschaften</h2>
+      <label>Open Source?</label>
+      <div style="display:flex;gap:16px;margin-top:6px">
+        <label style="display:flex;align-items:center;gap:6px;margin:0;font-size:13px;color:#374151">
+          <input type="radio" :value="true" x-model="s.properties.open_source" style="width:auto" /> Ja
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;margin:0;font-size:13px;color:#374151">
+          <input type="radio" :value="false" x-model="s.properties.open_source" style="width:auto" /> Nein / proprietär
+        </label>
+      </div>
+      <label style="margin-top:14px">Hosting-Optionen</label>
+      <div class="hosting-check">
+        <input type="checkbox" id="h_self" :checked="s.properties.hosting.includes('self_hosted')"
+          @change="toggleHosting('self_hosted', $event.target.checked)" />
+        <label for="h_self" style="margin:0;font-size:13px;color:#374151">Selbst gehostet</label>
+      </div>
+      <div class="hosting-check">
+        <input type="checkbox" id="h_cloud" :checked="s.properties.hosting.includes('cloud')"
+          @change="toggleHosting('cloud', $event.target.checked)" />
+        <label for="h_cloud" style="margin:0;font-size:13px;color:#374151">Cloud</label>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="card">
+      <h2>Features</h2>
+      <template x-for="(f, i) in s.features" :key="i">
+        <div class="feature-row">
+          <input x-model="s.features[i].de" placeholder="Feature (Deutsch)" />
+          <input x-model="s.features[i].en" placeholder="Feature (English)" />
+          <button class="btn btn-danger" @click="s.features.splice(i,1)">✕</button>
+        </div>
+      </template>
+      <button class="btn btn-secondary" style="margin-top:8px" @click="s.features.push({de:'',en:''})">
+        + Feature hinzufügen
+      </button>
+    </div>
+
+    <!-- Criteria scores -->
+    <div class="card">
+      <h2>Kriterium-Scores</h2>
+      <p style="font-size:12px;color:#6b7280;margin-bottom:12px">
+        Für jede mögliche Antwort eines Kriteriums: wie gut passt diese Lösung? (0 = gar nicht, 3 = sehr gut)
+      </p>
+
+      <template x-if="criteriaLoaded">
+        <template x-for="criterion in weightedCriteria" :key="criterion.id">
+          <div style="margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #f3f4f6">
+            <p style="font-weight:600;color:#374151;margin-bottom:8px" x-text="criterion.label.de"></p>
+            <template x-for="opt in criterion.options" :key="opt.value">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+                <span style="font-size:12px;color:#6b7280;width:200px;flex-shrink:0" x-text="opt.label.de"></span>
+                <input type="range" min="0" max="3" step="1"
+                  :value="getScore(criterion.id, opt.value)"
+                  @input="setScore(criterion.id, opt.value, +$event.target.value)" />
+                <span style="font-size:13px;font-weight:600;width:20px;text-align:right"
+                  x-text="getScore(criterion.id, opt.value)"></span>
+              </div>
+            </template>
+          </div>
+        </template>
+      </template>
+
+      <template x-if="!criteriaLoaded">
+        <div>
+          <p style="font-size:12px;color:#9ca3af;margin-bottom:8px">
+            Ladet zuerst die criteria.json unter dem Tab "Kriterien laden", um hier die Scores setzen zu können.
+          </p>
+          <p style="font-size:12px;color:#6b7280">
+            Oder: Scores direkt in der JSON-Vorschau bearbeiten.
+          </p>
+        </div>
+      </template>
+    </div>
+
+    <!-- Export -->
+    <div class="actions">
+      <button class="btn btn-primary" @click="tab='preview'">JSON-Vorschau anzeigen</button>
+      <button class="btn btn-primary" @click="exportJson()">💾 JSON herunterladen</button>
+      <button class="btn btn-secondary" @click="resetForm()">Formular zurücksetzen</button>
+    </div>
+  </div>
+
+  <!-- ===== PREVIEW TAB ===== -->
+  <div x-show="tab==='preview'">
+    <div class="card">
+      <h2>JSON-Vorschau: <span x-text="s.id || 'neue-loesung'"></span>.json</h2>
+      <pre x-text="jsonOutput()"></pre>
+      <div class="actions">
+        <button class="btn btn-primary" @click="exportJson()">💾 Herunterladen</button>
+        <button class="btn btn-secondary" @click="copyJson()">📋 Kopieren</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CRITERIA TAB ===== -->
+  <div x-show="tab==='criteria'">
+    <div class="card">
+      <h2>criteria.json laden</h2>
+      <p style="font-size:12px;color:#6b7280;margin-bottom:12px">
+        Ladet die criteria.json aus dem Repository, damit das Score-Formular die aktuellen Fragen und Antwortoptionen kennt.
+      </p>
+      <input type="file" accept=".json" @change="loadCriteria($event)" />
+      <div x-show="criteriaLoaded" style="margin-top:12px">
+        <span class="badge badge-green">✓ Kriterien geladen</span>
+        <span style="font-size:12px;color:#6b7280;margin-left:8px" x-text="weightedCriteria.length + ' gewichtete Kriterien'"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function admin() {
+  return {
+    tab: 'edit',
+    criteriaLoaded: false,
+    weightedCriteria: [],
+
+    s: {
+      id: '',
+      name: '',
+      tagline: { de: '', en: '' },
+      description: { de: '', en: '' },
+      website: '',
+      license: null,
+      logo: null,
+      last_updated: new Date().toISOString().slice(0, 10),
+      maintainer: null,
+      properties: { open_source: false, hosting: [] },
+      features: [],
+      criteria_scores: {}
+    },
+
+    toggleHosting(value, checked) {
+      if (checked && !this.s.properties.hosting.includes(value)) {
+        this.s.properties.hosting.push(value);
+      } else if (!checked) {
+        this.s.properties.hosting = this.s.properties.hosting.filter(h => h !== value);
+      }
+    },
+
+    getScore(criterionId, optionValue) {
+      return this.s.criteria_scores[criterionId]?.[optionValue] ?? 1;
+    },
+
+    setScore(criterionId, optionValue, value) {
+      if (!this.s.criteria_scores[criterionId]) {
+        this.s.criteria_scores[criterionId] = {};
+      }
+      this.s.criteria_scores[criterionId][optionValue] = value;
+    },
+
+    jsonOutput() {
+      const clean = JSON.parse(JSON.stringify(this.s));
+      if (!clean.license) clean.license = null;
+      if (!clean.maintainer) clean.maintainer = null;
+      return JSON.stringify(clean, null, 2);
+    },
+
+    exportJson() {
+      const blob = new Blob([this.jsonOutput()], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = (this.s.id || 'neue-loesung') + '.json';
+      a.click();
+    },
+
+    async copyJson() {
+      await navigator.clipboard.writeText(this.jsonOutput());
+      alert('JSON in Zwischenablage kopiert!');
+    },
+
+    loadFile(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+          this.s = {
+            id: data.id ?? '',
+            name: data.name ?? '',
+            tagline: data.tagline ?? { de: '', en: '' },
+            description: data.description ?? { de: '', en: '' },
+            website: data.website ?? '',
+            license: data.license ?? null,
+            logo: data.logo ?? null,
+            last_updated: data.last_updated ?? new Date().toISOString().slice(0, 10),
+            maintainer: data.maintainer ?? null,
+            properties: data.properties ?? { open_source: false, hosting: [] },
+            features: data.features ?? [],
+            criteria_scores: data.criteria_scores ?? {}
+          };
+        } catch {
+          alert('Fehler beim Laden der JSON-Datei.');
+        }
+      };
+      reader.readAsText(file);
+    },
+
+    loadCriteria(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+          this.weightedCriteria = data.criteria.filter(c => c.type === 'weighted');
+          this.criteriaLoaded = true;
+        } catch {
+          alert('Fehler beim Laden der criteria.json.');
+        }
+      };
+      reader.readAsText(file);
+    },
+
+    resetForm() {
+      if (!confirm('Formular wirklich zurücksetzen?')) return;
+      this.s = {
+        id: '', name: '',
+        tagline: { de: '', en: '' },
+        description: { de: '', en: '' },
+        website: '', license: null, logo: null,
+        last_updated: new Date().toISOString().slice(0, 10),
+        maintainer: null,
+        properties: { open_source: false, hosting: [] },
+        features: [], criteria_scores: {}
+      };
+    }
+  };
+}
+</script>
+</body>
+</html>

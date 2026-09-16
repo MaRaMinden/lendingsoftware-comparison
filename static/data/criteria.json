@@ -1,0 +1,171 @@
+{
+  "version": "1.0",
+  "criteria": [
+    {
+      "id": "open_source",
+      "type": "exclusion",
+      "label": { "de": "Open Source", "en": "Open Source" },
+      "question": {
+        "de": "Muss die Software Open Source sein?",
+        "en": "Does the software need to be open source?"
+      },
+      "description": {
+        "de": "Open-Source-Software kann eingesehen, angepasst und weiterentwickelt werden – und ist oft kostenlos nutzbar.",
+        "en": "Open source software can be inspected, modified, and extended – and is often free to use."
+      },
+      "options": [
+        {
+          "value": "required",
+          "label": { "de": "Ja, muss Open Source sein", "en": "Yes, must be open source" },
+          "exclusion_rule": { "property": "open_source", "required_value": true }
+        },
+        {
+          "value": "preferred",
+          "label": { "de": "Bevorzugt, aber nicht zwingend", "en": "Preferred, but not required" }
+        },
+        {
+          "value": "not_required",
+          "label": { "de": "Nein, spielt keine Rolle", "en": "No, doesn't matter" }
+        }
+      ]
+    },
+    {
+      "id": "hosting",
+      "type": "exclusion",
+      "label": { "de": "Hosting", "en": "Hosting" },
+      "question": {
+        "de": "Wie soll die Software betrieben werden?",
+        "en": "How should the software be operated?"
+      },
+      "description": {
+        "de": "Selbstgehostete Lösungen laufen auf eurem eigenen Server. Cloud-Lösungen werden vom Anbieter betrieben – einfacher, aber mit weniger Kontrolle.",
+        "en": "Self-hosted solutions run on your own server. Cloud solutions are managed by the provider – easier, but with less control."
+      },
+      "options": [
+        {
+          "value": "self_hosted",
+          "label": { "de": "Selbst gehostet (eigener Server)", "en": "Self-hosted (own server)" },
+          "exclusion_rule": { "property": "hosting", "includes": "self_hosted" }
+        },
+        {
+          "value": "cloud",
+          "label": { "de": "Cloud (vom Anbieter betrieben)", "en": "Cloud (provider-operated)" },
+          "exclusion_rule": { "property": "hosting", "includes": "cloud" }
+        },
+        {
+          "value": "any",
+          "label": { "de": "Beides ist okay", "en": "Either is fine" }
+        }
+      ]
+    },
+    {
+      "id": "cost",
+      "type": "weighted",
+      "label": { "de": "Kosten", "en": "Cost" },
+      "question": {
+        "de": "Welches monatliche Budget steht zur Verfügung?",
+        "en": "What monthly budget is available?"
+      },
+      "description": {
+        "de": "Laufende Kosten für die Software-Nutzung (ohne Serverkosten bei selbstgehosteten Lösungen).",
+        "en": "Ongoing costs for using the software (excluding server costs for self-hosted solutions)."
+      },
+      "options": [
+        { "value": "free",   "label": { "de": "Kostenlos (0 €)", "en": "Free (€0)" } },
+        { "value": "low",    "label": { "de": "Bis 50 €/Monat", "en": "Up to €50/month" } },
+        { "value": "medium", "label": { "de": "50–200 €/Monat", "en": "€50–200/month" } },
+        { "value": "any",    "label": { "de": "Kein festes Budget", "en": "No fixed budget" } }
+      ]
+    },
+    {
+      "id": "technical_skill",
+      "type": "weighted",
+      "label": { "de": "Technisches Know-how", "en": "Technical skills" },
+      "question": {
+        "de": "Wie viel technisches Know-how ist in eurer Initiative vorhanden?",
+        "en": "How much technical expertise is available in your initiative?"
+      },
+      "description": {
+        "de": "Manche Lösungen erfordern Server-Setup, Kommandozeile oder Programmierkenntnisse.",
+        "en": "Some solutions require server setup, command line usage, or programming knowledge."
+      },
+      "options": [
+        { "value": "none",     "label": { "de": "Wenig bis keins", "en": "Little to none" } },
+        { "value": "basic",    "label": { "de": "Grundkenntnisse vorhanden", "en": "Basic skills available" } },
+        { "value": "advanced", "label": { "de": "Entwickler:innen im Team", "en": "Developers in the team" } }
+      ]
+    },
+    {
+      "id": "community_size",
+      "type": "weighted",
+      "label": { "de": "Community-Größe", "en": "Community size" },
+      "question": {
+        "de": "Wie viele Nutzer:innen soll die Plattform bedienen?",
+        "en": "How many users will the platform serve?"
+      },
+      "description": {
+        "de": "Die Anzahl aktiver Leihender und Verleihender beeinflusst, welche Lösung sinnvoll skaliert.",
+        "en": "The number of active borrowers and lenders influences which solution scales well."
+      },
+      "options": [
+        { "value": "small",  "label": { "de": "Klein (bis 50 Personen)", "en": "Small (up to 50 people)" } },
+        { "value": "medium", "label": { "de": "Mittel (50–500 Personen)", "en": "Medium (50–500 people)" } },
+        { "value": "large",  "label": { "de": "Groß (über 500 Personen)", "en": "Large (over 500 people)" } }
+      ]
+    },
+    {
+      "id": "item_types",
+      "type": "weighted",
+      "label": { "de": "Art der Gegenstände", "en": "Type of items" },
+      "question": {
+        "de": "Was soll hauptsächlich verliehen werden?",
+        "en": "What will primarily be lent out?"
+      },
+      "description": {
+        "de": "Manche Plattformen sind auf bestimmte Gegenstände optimiert (z. B. Bibliotheksverwaltung, Werkzeug, Peer-to-Peer-Sharing).",
+        "en": "Some platforms are optimized for specific types of items (e.g. library management, tools, peer-to-peer sharing)."
+      },
+      "options": [
+        { "value": "library",  "label": { "de": "Bücher / Medien / strukturierter Bestand", "en": "Books / media / structured inventory" } },
+        { "value": "tools",    "label": { "de": "Werkzeug und Geräte", "en": "Tools and equipment" } },
+        { "value": "everyday", "label": { "de": "Alltagsgegenstände (Haushalt, Freizeit)", "en": "Everyday items (household, leisure)" } },
+        { "value": "mixed",    "label": { "de": "Gemischt / alles Mögliche", "en": "Mixed / anything" } }
+      ]
+    },
+    {
+      "id": "payment",
+      "type": "weighted",
+      "label": { "de": "Zahlungsfunktion", "en": "Payment features" },
+      "question": {
+        "de": "Soll über die Plattform Geld fließen können?",
+        "en": "Should the platform support financial transactions?"
+      },
+      "description": {
+        "de": "Zum Beispiel für Leihgebühren, Kautionen oder Mitgliedsbeiträge.",
+        "en": "For example rental fees, deposits, or membership contributions."
+      },
+      "options": [
+        { "value": "not_needed", "label": { "de": "Nein, alles kostenlos", "en": "No, everything is free" } },
+        { "value": "optional",   "label": { "de": "Optional wäre gut", "en": "Would be nice optionally" } },
+        { "value": "required",   "label": { "de": "Ja, zwingend notwendig", "en": "Yes, required" } }
+      ]
+    },
+    {
+      "id": "multilingual",
+      "type": "weighted",
+      "label": { "de": "Mehrsprachigkeit", "en": "Multilingual support" },
+      "question": {
+        "de": "Muss die Plattform mehrsprachig sein?",
+        "en": "Does the platform need to support multiple languages?"
+      },
+      "description": {
+        "de": "Relevant bei internationalen Communities oder mehrsprachigen Städten.",
+        "en": "Relevant for international communities or multilingual cities."
+      },
+      "options": [
+        { "value": "not_needed", "label": { "de": "Nein, eine Sprache reicht", "en": "No, one language is enough" } },
+        { "value": "required",   "label": { "de": "Ja, wichtig", "en": "Yes, important" } }
+      ]
+    }
+  ]
+}

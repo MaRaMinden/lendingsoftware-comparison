@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "home": "Start",
+    "quiz": "Fragebogen",
+    "results": "Ergebnisse",
+    "allSolutions": "Alle Lösungen"
+  },
+  "home": {
+    "title": "Welche Leih-Software passt zu euch?",
+    "subtitle": "Beantwortet ein paar Fragen und bekommt eine persönliche Empfehlung – transparent und nachvollziehbar.",
+    "cta": "Fragebogen starten",
+    "ctaResume": "Fragebogen fortsetzen",
+    "howItWorks": "So funktioniert es",
+    "step1Title": "Fragen beantworten",
+    "step1Desc": "Geht durch einen kurzen Fragenkatalog zu euren Anforderungen.",
+    "step2Title": "Wichtigkeit festlegen",
+    "step2Desc": "Bestimmt, welche Kriterien besonders wichtig für euch sind.",
+    "step3Title": "Empfehlung erhalten",
+    "step3Desc": "Seht, welche Software am besten zu euch passt – mit voller Transparenz über die Bewertung."
+  },
+  "quiz": {
+    "question": "Frage",
+    "of": "von",
+    "skip": "Überspringen",
+    "next": "Weiter",
+    "back": "Zurück",
+    "finish": "Ergebnisse anzeigen",
+    "importance": "Wie wichtig ist euch das?",
+    "importanceLow": "Weniger wichtig",
+    "importanceMedium": "Wichtig",
+    "importanceHigh": "Sehr wichtig",
+    "exclusionNote": "Ausschlusskriterium – beeinflusst, welche Lösungen in Frage kommen",
+    "weightedNote": "Gewichtetes Kriterium – beeinflusst die Reihenfolge der Empfehlungen"
+  },
+  "results": {
+    "title": "Eure Empfehlungen",
+    "subtitle": "Basierend auf euren Antworten",
+    "excluded": "Durch Ausschlusskriterien nicht gezeigt",
+    "matchScore": "Übereinstimmung",
+    "learnMore": "Mehr erfahren",
+    "visitWebsite": "Zur Website",
+    "editAnswers": "Antworten anpassen",
+    "share": "Ergebnis teilen",
+    "shareCopied": "Link kopiert!",
+    "showDetails": "Bewertungsdetails",
+    "hideDetails": "Details ausblenden",
+    "noResults": "Keine Lösungen gefunden",
+    "noResultsHint": "Die Ausschlusskriterien schließen alle Lösungen aus. Passt eure Antworten an.",
+    "scoreExplanation": "Wie wird bewertet?",
+    "scoreExplanationText": "Der Score berechnet sich als gewichteter Mittelwert: Jede Lösung bekommt für jede Antwort Punkte (0–3), multipliziert mit der von euch festgelegten Wichtigkeit. Ausschlusskriterien entfernen Lösungen komplett.",
+    "openSource": "Open Source",
+    "selfHosted": "Selbstgehostet",
+    "cloud": "Cloud",
+    "free": "Kostenlos",
+    "license": "Lizenz",
+    "maintainer": "Gepflegt von"
+  },
+  "solution": {
+    "features": "Features",
+    "criteriaBreakdown": "Bewertungsdetails",
+    "criterionScore": "Punkte",
+    "criterionWeight": "Wichtigkeit",
+    "weightedScore": "Gewichteter Beitrag",
+    "backToResults": "Zurück zu den Ergebnissen",
+    "visitWebsite": "Zur Website",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "scoreNote": "Die Scores wurden von AllerLeih vergeben und sind durch Community-PRs aktualisierbar."
+  },
+  "footer": {
+    "poweredBy": "Ein Projekt von",
+    "contribute": "Lösung hinzufügen oder korrigieren",
+    "contributeLink": "https://github.com/allerleih/leih-finder"
+  },
+  "common": {
+    "yes": "Ja",
+    "no": "Nein",
+    "loading": "Wird geladen …",
+    "error": "Fehler beim Laden",
+    "openSourceBadge": "Open Source",
+    "notOpenSource": "Proprietär"
+  }
+}
